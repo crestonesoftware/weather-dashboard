@@ -3,6 +3,14 @@ h1 {
 
 }
 
+.card-title {
+    font-size: 80%;
+}
+
+.card-text {
+    font-size: 70%;
+}
+
 .bg-gradient-custom {
     background: linear-gradient(to right, skyblue, royalblue);
 }
