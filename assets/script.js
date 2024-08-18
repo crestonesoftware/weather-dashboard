@@ -20,16 +20,21 @@ async function handleCitySearch() {
     const currentConditions = await getCurrentWeather(coordinates);
     currentWeatherEl.innerHTML = renderWeather(currentConditions, today);
     const fiveDayForecast = await getFiveDayForecast(coordinates);
-    forecastCardsEl.innerHTML = "Hey there"
+    forecastCardsEl.innerHTML = "";
     for (forecast of fiveDayForecast) {
-
+        // wrapper for the card
         const forecastCol = document.createElement("div")
         forecastCol.classList.add("col-sm-2");
-        forecastCol.textContent = "Zippo"
         forecastCardsEl.appendChild(forecastCol);
-        // const forecastCard = document.createElement("div")
-        // forecastCol.classList.add("col-sm-2");
-        // console.log("again");
+        // the card
+        const forecastCard = document.createElement("div")
+        forecastCard.classList.add("card");
+        forecastCol.appendChild(forecastCard);
+        // card body
+        const forecastCardBody = document.createElement("div")
+        forecastCardBody.classList.add("card-body");
+        forecastCardBody.innerHTML = renderWeather(forecast);
+        forecastCard.appendChild(forecastCardBody);
     }
 
 }
@@ -37,8 +42,9 @@ async function handleCitySearch() {
 // renders the DIV that displays current conditions
 function renderWeather(conditions, date = null) {
     const dateString = date ? date.toLocaleDateString() : conditions.dateString;
+    const cityDisplay = conditions.cityName ? `${conditions.cityName} ` : "";
     return `
-    <h3 class="card-title">${conditions.cityName} (${dateString})</h3>
+    <h3 class="card-title">${cityDisplay}(${dateString})</h3>
     <p class="card-text"><i class="fa-regular fa-sun"></i></p>
     <p class="card-text">Temp: ${conditions.temp} C</p>
     <p class="card-text">Wind: ${conditions.windSpeed} kph</p>
@@ -74,7 +80,6 @@ async function getCurrentWeather(coordinates) {
     const { lat, lon } = coordinates;
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
     const currentWeather = await response.json();
-    console.log(currentWeather);
     return parseConditions(currentWeather);
 }
 
@@ -84,10 +89,9 @@ async function getFiveDayForecast(coordinates) {
     const { lat, lon } = coordinates;
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
     const forecast = await response.json();
-    console.log("forecast", forecast);
     const tmpForecastList = forecast.list;
-    console.log("tmpForecast list", tmpForecastList);
     let dayCount = 0;
+    // forecasts are given in 3-hour increments. Get the forecast for the same time each day by using every 8th time increment
     for (let idx = 0; idx < tmpForecastList.length; idx++) {
         if ((idx + 1) % 8 == 0) {
             ++dayCount
