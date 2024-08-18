@@ -14,3 +14,12 @@ h1 {
 .bg-gradient-custom {
     background: linear-gradient(to right, skyblue, royalblue);
 }
+
+.today-forecast {
+    height: 140px;
+}
+
+button.form-control {
+    color: white;
+    background-color: royalblue;
+}
