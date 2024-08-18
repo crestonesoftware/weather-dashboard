@@ -16,7 +16,8 @@ h1 {
 }
 
 .today-forecast {
-    height: 140px;
+    height: 160px;
+    padding: 5px 0 0 20px;
 }
 
 button.form-control {
