@@ -2,6 +2,10 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ## <a name="Description"></a>Description
 Weather dashboard retrieves current conditions and 5-day-forecase conditions by city.
+
+Repo [on github](https://github.com/crestonesoftware/weather-dashboard)
+
+Deployed site [on GitHub](https://crestonesoftware.github.io/weather-dashboard/)
 ## <a name="Table of Contents"></a>Table of Contents
 - [Description](#Description)
 - [Installation](#Installation)
