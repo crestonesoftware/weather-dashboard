@@ -18,3 +18,8 @@ h1 {
 .today-forecast {
     height: 140px;
 }
+
+button.form-control {
+    color: white;
+    background-color: royalblue;
+}
