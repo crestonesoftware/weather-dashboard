@@ -55,8 +55,8 @@ function renderWeather(conditions, date = null) {
 
 // returns an object containing coordinates {lat, lon} for the named city
 async function getCoordinates(cityName) {
-    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`;
-    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`);
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`;
+    const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`);
     const theData = await response.json()
     const lat = theData[0].lat;
     const lon = theData[0].lon;
